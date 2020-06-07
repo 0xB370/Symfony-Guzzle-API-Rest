@@ -64,7 +64,7 @@ class ProductoController extends AbstractController{
             'precio' => $producto->getPrecio(),
             'precioIVA' => $producto->getPrecioIVA(),
             'imagen' => $producto->getImagen(),
-            'taxonomia' => $producto->getTaxonomia()
+            'taxonomia' => $producto->getTaxonomia()->getNombre()
         ];
         return new JsonResponse($data, Response::HTTP_OK);
     }
@@ -83,7 +83,7 @@ class ProductoController extends AbstractController{
                 'precio' => $producto->getPrecio(),
                 'precioIVA' => $producto->getPrecioIVA(),
                 'imagen' => $producto->getImagen(),
-                'taxonomia' => $producto->getTaxonomia()
+                'taxonomia' => $producto->getTaxonomia()->getNombre()
             ];
         }
         return new JsonResponse($data, Response::HTTP_OK);     
@@ -140,7 +140,7 @@ class ProductoController extends AbstractController{
                 'precio' => $producto->getPrecio(),
                 'precioIVA' => $producto->getPrecioIVA(),
                 'imagen' => $producto->getImagen(),
-                'taxonomia' => $producto->getTaxonomia()
+                'taxonomia' => $producto->getTaxonomia()->getNombre()
             ];
         }
         return new JsonResponse($data, Response::HTTP_OK);
@@ -162,7 +162,7 @@ class ProductoController extends AbstractController{
                 'precio' => $producto->getPrecio(),
                 'precioIVA' => $producto->getPrecioIVA(),
                 'imagen' => $producto->getImagen(),
-                'taxonomia' => $producto->getTaxonomia()
+                'taxonomia' => $producto->getTaxonomia()->getNombre()
             ];
         }
         return new JsonResponse($data, Response::HTTP_OK);
@@ -184,7 +184,7 @@ class ProductoController extends AbstractController{
                 'precio' => $producto->getPrecio(),
                 'precioIVA' => $producto->getPrecioIVA(),
                 'imagen' => $producto->getImagen(),
-                'taxonomia' => $producto->getTaxonomia()
+                'taxonomia' => $producto->getTaxonomia()->getNombre()
             ];
         }
         return new JsonResponse($data, Response::HTTP_OK);
@@ -208,7 +208,7 @@ class ProductoController extends AbstractController{
                 'precio' => $producto->getPrecio(),
                 'precioIVA' => $producto->getPrecioIVA(),
                 'imagen' => $producto->getImagen(),
-                'taxonomia' => $producto->getTaxonomia()
+                'taxonomia' => $producto->getTaxonomia()->getNombre()
             ];
         }
         return new JsonResponse($data, Response::HTTP_OK);

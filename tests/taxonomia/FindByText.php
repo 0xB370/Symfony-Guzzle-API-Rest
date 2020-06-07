@@ -7,16 +7,22 @@ $client = new \GuzzleHttp\Client([
     'timeout'  => 2.0
 ]);
 
-//Primer parámetro a ingresar por consola
+//Primer parámetro a ingresar por consola (texto a buscar)
 $data = array(
     "texto" => $argv[1],
 );
 
-//Segundo parámetro a ingresar por consola
+//Segundo parámetro a ingresar por consola (pagina a obtener)
 $pag = $argv[2];
+if ($pag === null){
+    $pag = 1;
+}
 
-//Tercer parámetro a ingresar por consola
+//Tercer parámetro a ingresar por consola (cantidad de taxonomías por página)
 $nroTax = $argv[3];
+if ($nroTax === null){
+    $nroTax = 3;
+}
 
 $response = $client->request('GET', '/taxonomia/findByText/'. $pag .'/'. $nroTax, [
     'body' => json_encode($data)
