@@ -106,13 +106,15 @@ class ProductoController extends AbstractController{
             $producto->setPrecioIVA(floatval($data['precio'] * 1.21));
         }
         empty($data['imagen']) ? true : $producto->setImagen($data['imagen']);
-        $taxonomia = $data['taxonomia'];
-        $taxonomiaEnt = $this->taxonomiaRepository->find($taxonomia);
-        if(!(empty($taxonomia)) && $taxonomiaEnt === null){
-            throw new NotFoundHttpException('Taxonomía inexistente!');
-        } else {
-            $producto->setTaxonomia($taxonomiaEnt);
+        if(!(empty($data['taxonomia']))){
+            $taxonomiaEnt = $this->taxonomiaRepository->find($data['taxonomia']);
+            if($taxonomiaEnt === null){
+                throw new NotFoundHttpException('Taxonomía inexistente!');
+            } else {
+                $producto->setTaxonomia($taxonomiaEnt);
+            }
         }
+        
         $updatedProducto = $this->productoRepository->updateProducto($producto);
         return new JsonResponse($updatedProducto->toArray(), Response::HTTP_OK);
     }
