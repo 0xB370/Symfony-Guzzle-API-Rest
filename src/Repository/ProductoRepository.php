@@ -115,4 +115,14 @@ class ProductoRepository extends ServiceEntityRepository
         return $qb->execute();
       }
 
+      public function buscarTodosPorTexto($texto){
+        $qb = $this->createQueryBuilder('p')
+        ->where("p.nombre LIKE '%$texto%'")
+        ->orWhere("p.descripcion LIKE '%$texto%'")
+        ->orWhere("p.imagen LIKE '%$texto%'")
+        ->getQuery();
+        return $qb->execute();
+      }
+
+
 }

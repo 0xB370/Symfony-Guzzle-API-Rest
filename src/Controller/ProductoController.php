@@ -221,5 +221,29 @@ class ProductoController extends AbstractController{
         }
         return new JsonResponse($data, Response::HTTP_OK);
     }
+
+    /**
+    * @Route("/getAllByText", 
+    * name="getAllProductosPorTexto", methods={"GET"})
+    */
+    public function getAllByText(Request $request): JsonResponse
+    {
+        $data = json_decode($request->getContent(), true);
+        $texto = $data['texto'];
+        $productos = $this->productoRepository->buscarTodosPorTexto($texto);
+        $data = [];
+        foreach($productos as $producto){
+            $data[] = [
+                'id' => $producto->getId(),
+                'nombre' => $producto->getNombre(),
+                'descripcion' => $producto->getDescripcion(),
+                'precio' => $producto->getPrecio(),
+                'precioIVA' => $producto->getPrecioIVA(),
+                'imagen' => $producto->getImagen(),
+                'taxonomia' => $producto->getTaxonomia()->getNombre()
+            ];
+        }
+        return new JsonResponse($data, Response::HTTP_OK);
+    }
     
 }
